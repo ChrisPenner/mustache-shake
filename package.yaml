@@ -8,7 +8,7 @@ copyright:           "2018 Chris Penner"
 
 extra-source-files:
 - README.md
-- ChangeLog.md
+- CHANGELOG.md
 
 # Metadata used when publishing your package
 # synopsis:            Short description of your package
@@ -23,9 +23,24 @@ dependencies:
 - base >= 4.7 && < 5
 - mustache
 - shake
+- text
 
 library:
   source-dirs: src
+
+executables:
+  mustache-shake-exe:
+    main:                Main.hs
+    source-dirs:         app
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - mustache-shake
+    - mustache
+    - shake
+
 
 tests:
   mustache-shake-test:
@@ -37,3 +52,4 @@ tests:
     - -with-rtsopts=-N
     dependencies:
     - mustache-shake
+    - hspec
